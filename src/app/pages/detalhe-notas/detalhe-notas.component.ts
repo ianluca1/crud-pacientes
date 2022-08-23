@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import jsPDF from 'jspdf';
 import { NotasService } from 'src/app/shared/notas.service';
 import { Notas } from 'src/app/shared/note.model';
 
@@ -10,6 +11,8 @@ import { Notas } from 'src/app/shared/note.model';
   styleUrls: ['./detalhe-notas.component.scss']
 })
 export class DetalheNotasComponent implements OnInit {
+
+  @ViewChild('content', { static: false }) el!: ElementRef;
 
   notas!: Notas;
   notaId!: number;
@@ -47,6 +50,16 @@ export class DetalheNotasComponent implements OnInit {
 
   btnCancelar(){
     this.router.navigateByUrl('/');
+  }
+
+  gerarPDF() {
+    const doc = new jsPDF('p', 'pt', 'a4');
+    doc.html(this.el.nativeElement, {
+      callback: (doc) => {
+        doc.save('nota.pdf');
+      }
+    })
+
   }
 
 }

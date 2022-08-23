@@ -8,6 +8,7 @@ import { PaginaPrincipalComponent } from './pages/pagina-principal/pagina-princi
 import { NoteCardComponent } from './note-card/note-card.component';
 import { DetalheNotasComponent } from './pages/detalhe-notas/detalhe-notas.component';
 import { FormsModule } from '@angular/forms';
+import { PdfPrintComponent } from './shared/pdf-print/pdf-print.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     ListaDeNotasComponent,
     PaginaPrincipalComponent,
     NoteCardComponent,
-    DetalheNotasComponent
+    DetalheNotasComponent,
+    PdfPrintComponent
   ],
   imports: [
     BrowserModule,
