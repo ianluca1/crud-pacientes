@@ -1,0 +1,26 @@
+<div class="main-container">
+
+    <div class="search-bar-container">
+        <div class="field">
+            <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Digite a nota que deseja pesquisar">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-search"></i>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="notes-list">
+        <app-note-card 
+        *ngFor="let nota of notas; index as i" 
+        [link]="['/update', i]"
+        (delete)="deletarNota(i)"
+        [title]="nota.title" 
+        [body]="nota.body">
+    </app-note-card>
+    </div>
+
+    <button class="button floating-add-button is-primary" routerLink="new">Adicionar nota</button>
+
+</div> 
