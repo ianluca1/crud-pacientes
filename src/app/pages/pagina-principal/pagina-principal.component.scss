@@ -1,15 +1,15 @@
-// .layout-box {
-//     display: flex;
-//     flex-direction: column;
-//     height: 100%;
+.layout-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 
-//     overflow: hidden;
+    overflow: hidden;
 
-//     .page-content {
-//         flex-grow: 1;
-//         overflow-y: scroll;
-//     }
-// }
+    .page-content {
+        flex-grow: 1;
+        overflow-y: scroll;
+    }
+}
 
 .top-bar {
     width: 100%;
