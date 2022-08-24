@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import jsPDF from 'jspdf';
+import { ToastrService } from 'ngx-toastr';
 import { NotasService } from 'src/app/shared/notas.service';
 import { Notas } from 'src/app/shared/note.model';
 
@@ -17,11 +17,13 @@ export class DetalheNotasComponent implements OnInit {
   notas!: Notas;
   notaId!: number;
   nova!: boolean;
+  tituloNota!: string;
 
   constructor(
     private notasService: NotasService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -32,8 +34,10 @@ export class DetalheNotasComponent implements OnInit {
         this.notas = this.notasService.buscarNotas(params['id']);
         this.notaId = params['id'];
         this.nova = false;
+        this.tituloNota = 'Edit Note'
       } else {
         this.nova = true;
+        this.tituloNota = 'New Note'
       }
     });
 
@@ -42,8 +46,10 @@ export class DetalheNotasComponent implements OnInit {
   onSubmit(form: NgForm){
     if(this.nova){
       this.notasService.inserirNotas(form.value);
+      this.toastr.success('Note created successfully!');
     } else {
       this.notasService.atualizarNotas(this.notaId, form.value.title, form.value.body);
+      this.toastr.success('Note updated successfully!');
     }
     this.router.navigateByUrl('/');
   }
@@ -53,13 +59,6 @@ export class DetalheNotasComponent implements OnInit {
   }
 
   gerarPDF() {
-    const doc = new jsPDF('p', 'pt', 'a4');
-    doc.html(this.el.nativeElement, {
-      callback: (doc) => {
-        doc.save('nota.pdf');
-      }
-    })
-
+   
   }
-
 }

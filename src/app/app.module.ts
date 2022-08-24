@@ -8,7 +8,7 @@ import { PaginaPrincipalComponent } from './pages/pagina-principal/pagina-princi
 import { NoteCardComponent } from './note-card/note-card.component';
 import { DetalheNotasComponent } from './pages/detalhe-notas/detalhe-notas.component';
 import { FormsModule } from '@angular/forms';
-import { PdfPrintComponent } from './shared/pdf-print/pdf-print.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -17,13 +17,13 @@ import { PdfPrintComponent } from './shared/pdf-print/pdf-print.component';
     PaginaPrincipalComponent,
     NoteCardComponent,
     DetalheNotasComponent,
-    PdfPrintComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule ad  
   ],
   providers: [],
   bootstrap: [AppComponent]
