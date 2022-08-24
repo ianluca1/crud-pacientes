@@ -8,6 +8,7 @@ import { PaginaPrincipalComponent } from './pages/pagina-principal/pagina-princi
 import { NoteCardComponent } from './note-card/note-card.component';
 import { DetalheNotasComponent } from './pages/detalhe-notas/detalhe-notas.component';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -15,13 +16,14 @@ import { FormsModule } from '@angular/forms';
     ListaDeNotasComponent,
     PaginaPrincipalComponent,
     NoteCardComponent,
-    DetalheNotasComponent
+    DetalheNotasComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule ad  
   ],
   providers: [],
   bootstrap: [AppComponent]

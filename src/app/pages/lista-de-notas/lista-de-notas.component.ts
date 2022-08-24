@@ -1,5 +1,6 @@
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { NotasService } from 'src/app/shared/notas.service';
 import { Notas } from 'src/app/shared/note.model';
 
@@ -76,7 +77,7 @@ export class ListaDeNotasComponent implements OnInit {
   notasFiltradas: Notas[] = [];
   busca: any;
 
-  constructor(private notasService: NotasService) { }
+  constructor(private notasService: NotasService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.notas = this.notasService.buscarTodasNotas();
@@ -85,6 +86,7 @@ export class ListaDeNotasComponent implements OnInit {
 
   deletarNota(id: number) {
     this.notasService.removerNotas(id);
+    this.toastr.success('Note deleted successfully!');
   }
 
   buscarNota(query: any) {
