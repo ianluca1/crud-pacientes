@@ -1,22 +1,27 @@
 <div class="form-container">
     <label class="tituloPagina">{{tituloNota}}</label>
     <form #noteForm="ngForm">
-        <div id="content" #content class="field">
-            <label class="label">Note Title</label>
-            <div class="control">
-                <input type="text" name="title" [(ngModel)]="notas.title" required class="input">
-            </div>
-            <br>
-            <div class="field">
-                <label class="label">Text</label>
+        <div id="print-section">
+            <div id="content" #content class="field">
+                <label class="label">Note Title</label>
                 <div class="control">
-                    <textarea class="textarea" name="body" [(ngModel)]="notas.body"></textarea>
+                    <input type="text" name="title" [(ngModel)]="notas.title" required class="input">
+                </div>
+                <br>
+                <div class="field">
+                    <label class="label">Text</label>
+                    <div class="control">
+                        <textarea class="textarea" name="body" rows="10" [(ngModel)]="notas.body"></textarea>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="field is-grouped is-pulled-right">
+            <div *ngIf="!this.nova" class="control">
+                <button class="button is-text" printTitle="Print" printSectionId="print-section" [useExistingCss]="true" ngxPrint>Print</button>
+            </div>
             <div class="control">
-                <button class="button is-text" type="button" (click)="btnCancelar()">Cancel</button>
+                <button class="button is-danger" type="button" (click)="btnCancelar()">Cancel</button>
             </div>
             <div class="control">
                 <button class="button is-success" type="submit" (click)="onSubmit(noteForm)"

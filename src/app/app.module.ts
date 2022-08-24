@@ -9,6 +9,7 @@ import { NoteCardComponent } from './note-card/note-card.component';
 import { DetalheNotasComponent } from './pages/detalhe-notas/detalhe-notas.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(), // ToastrModule ad  
+    ToastrModule.forRoot(),
+    NgxPrintModule // ToastrModule ad  
   ],
   providers: [],
   bootstrap: [AppComponent]
