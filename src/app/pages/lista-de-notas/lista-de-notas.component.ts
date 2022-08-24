@@ -91,10 +91,38 @@ export class ListaDeNotasComponent implements OnInit {
 
   buscarNota(query: any) {
     this.busca = query.target.value;
+
     if (this.busca.length < 1) {
-      this.notasFiltradas = this.notas;
+      this.notasFiltradas = this.notas
     } else {
-      this.notasFiltradas = this.notas.filter(notas => notas.title == this.busca)
+      let allResults: Notas[] = new Array<Notas>();
+      let search: string[] = this.busca.split(' ');
+      search = this.removeDuplicates(search);
+      search.forEach(term => {
+        let results: Notas[] = this.relevantNotes(term);
+        allResults = [...allResults, ...results]
+      })
+
+      let uniqueResults = this.removeDuplicates(allResults)
+      this.notasFiltradas = uniqueResults;
     }
+  }
+
+  removeDuplicates(arr: Array<any>){
+    let uniqueResults: Set<any> = new Set<any>();
+    arr.forEach(e => uniqueResults.add(e))
+    return Array.from(uniqueResults);
+  }
+
+  relevantNotes(query: string){
+    query = query.toLowerCase().trim();
+    let relevantNotes = this.notas.filter(note => {
+      if(note.title.toLowerCase().includes(query)){
+        return true
+      }
+      return false;
+    })
+
+    return relevantNotes;
   }
 }

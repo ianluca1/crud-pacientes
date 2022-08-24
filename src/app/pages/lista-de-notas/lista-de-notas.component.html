@@ -3,7 +3,7 @@
     <div class="search-bar-container">
         <div class="field">
             <p class="control has-icons-left">
-                <input class="input" type="text" (keydown.enter)="buscarNota($event)" placeholder="Search for note by title">
+                <input class="input" type="text" (keyup)="buscarNota($event)" placeholder="Search for note by title">
                 <span class="icon is-small is-left">
                     <i class="fas fa-search" (click)="buscarNota($event)"></i>
                 </span>
