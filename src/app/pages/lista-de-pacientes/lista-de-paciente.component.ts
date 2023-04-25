@@ -1,13 +1,15 @@
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { NotasService } from 'src/app/shared/notas.service';
-import { Notas } from 'src/app/shared/note.model';
+import { PacienteService } from 'src/app/shared/pacientes.service';
+import { Paciente } from 'src/app/shared/paciente.model';
+import { ModalIncluirAlterarPacienteComponent } from '../modal-incluir-alterar-paciente/modal-incluir-alterar-paciente.component';
+import { ModalConfirmacaoComponent } from '../modal-confirmacao/modal-confirmacao.component';
 
 @Component({
-  selector: 'app-lista-de-notas',
-  templateUrl: './lista-de-notas.component.html',
-  styleUrls: ['./lista-de-notas.component.scss'],
+  selector: 'app-lista-de-paciente',
+  templateUrl: './lista-de-paciente.component.html',
+  styleUrls: ['./lista-de-paciente.component.scss'],
   animations: [
     trigger('itemAnim', [
       transition('void => *', [
@@ -71,40 +73,57 @@ import { Notas } from 'src/app/shared/note.model';
     ]),
   ]
 })
-export class ListaDeNotasComponent implements OnInit {
+export class ListaPacienteComponent implements OnInit {
 
-  notas: Notas[] = [];
-  notasFiltradas: Notas[] = [];
+  @ViewChild('modal_incluir_alterar_paciente', { static: false }) public MODAL_INCLUIR_ALTERAR_PACIENTE!: ModalIncluirAlterarPacienteComponent | undefined;
+  @ViewChild('modal_confirmacao', { static: false }) public MODAL_CONFIRMACAO!: ModalConfirmacaoComponent | undefined;
+  
+  paciente: Paciente[] = [];
+  pacienteFiltrado: Paciente[] = [];
   busca: any;
+  pacienteId: any;
 
-  constructor(private notasService: NotasService, private toastr: ToastrService) { }
+  constructor(private pacienteService: PacienteService
+    ) { }
 
   ngOnInit(): void {
-    this.notas = this.notasService.buscarTodasNotas();
-    this.notasFiltradas = this.notas;
+    this.paciente = this.pacienteService.buscarTodasPacientes();
+    this.pacienteFiltrado = this.paciente;
   }
 
-  deletarNota(id: number) {
-    this.notasService.removerNotas(id);
-    this.toastr.success('Note deleted successfully!');
+  abrirModalConfirmacao(id: number){
+    this.MODAL_CONFIRMACAO?.open(id);
   }
 
-  buscarNota(query: any) {
+  atualizarPaciente(id: number){
+    this.MODAL_INCLUIR_ALTERAR_PACIENTE?.open(id);
+  }
+
+  abrirModal(){
+    this.MODAL_INCLUIR_ALTERAR_PACIENTE?.open();
+  }
+
+  visualizarPaciente(id: number){
+    // this.sessionService.setItem("compromissoSelecionado", this.compromissoSelecionado);
+    // this.router.navigateByUrl("/compromissos/form");  
+  }
+
+  buscarPacientePorNome(query: any) {
     this.busca = query.target.value;
 
     if (this.busca.length < 1) {
-      this.notasFiltradas = this.notas
+      this.pacienteFiltrado = this.paciente
     } else {
-      let allResults: Notas[] = new Array<Notas>();
+      let allResults: Paciente[] = new Array<Paciente>();
       let search: string[] = this.busca.split(' ');
       search = this.removeDuplicates(search);
       search.forEach(term => {
-        let results: Notas[] = this.relevantNotes(term);
+        let results: Paciente[] = this.relevantNotes(term);
         allResults = [...allResults, ...results]
       })
 
       let uniqueResults = this.removeDuplicates(allResults)
-      this.notasFiltradas = uniqueResults;
+      this.pacienteFiltrado = uniqueResults;
     }
   }
 
@@ -116,8 +135,8 @@ export class ListaDeNotasComponent implements OnInit {
 
   relevantNotes(query: string){
     query = query.toLowerCase().trim();
-    let relevantNotes = this.notas.filter(note => {
-      if(note.title.toLowerCase().includes(query)){
+    let relevantNotes = this.paciente.filter(paciente => {
+      if(paciente.nomePaciente.toLowerCase().includes(query) || paciente.idadePaciente.toString().includes(query) || paciente.generoPaciente.toLowerCase().includes(query)){
         return true
       }
       return false;

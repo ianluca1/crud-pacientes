@@ -1,0 +1,33 @@
+<div class="main-container">
+
+    <div class="search-bar-container">
+        <div class="field">
+            <p class="control has-icons-left">
+                <input class="input" type="text" (keyup)="buscarPacientePorNome($event)" placeholder="Buscar Paciente por Nome, Idade ou Gênero">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-search" (click)="buscarPacientePorNome($event)"></i>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="notes-list" [@listAnim]>
+        <app-paciente-card 
+        *ngFor="let paciente of pacienteFiltrado; index as i" 
+        [@itemAnim]
+        (deletar)="abrirModalConfirmacao(i)"
+        (visualizar)="visualizarPaciente(i)"
+        (atualizar)="atualizarPaciente(i)"
+        [nomePaciente]="paciente.nomePaciente" 
+        [idadePaciente]="paciente.idadePaciente"
+        [generoPaciente]="paciente.generoPaciente">
+    </app-paciente-card>
+    </div>
+
+    <button class="button floating-add-button is-primary" (click)="abrirModal()">Adicionar Novo Paciente</button>
+
+</div> 
+
+<app-modal-incluir-alterar-paciente #modal_incluir_alterar_paciente> </app-modal-incluir-alterar-paciente>
+<app-modal-confirmacao #modal_confirmacao> </app-modal-confirmacao>
+```

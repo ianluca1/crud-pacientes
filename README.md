@@ -1,11 +1,11 @@
-# Notepad
+# CRUD-PACIENTE
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.2.
+Esse projeto foi gerado na versão [Angular CLI](https://github.com/angular/angular-cli) 14.0.2.
 
-## Run Project
+## Rodar Projeto
 
-Run `npm i`to install the dependencies.
+Rode o comando `npm i` para instalar as dependencias.
 
-## Development server
+## Server de Desenvolvimento
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Execute o `ng serve` em um servidor de desenvolvimento. Navegue até `http://localhost:4200/`. O aplicativo será recarregado automaticamente se você alterar algum dos arquivos de origem.

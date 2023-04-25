@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DetalheNotasComponent } from './pages/detalhe-notas/detalhe-notas.component';
-import { ListaDeNotasComponent } from './pages/lista-de-notas/lista-de-notas.component';
+import { DetalhePacienteComponent } from './pages/detalhe-paciente/detalhe-paciente.component';
 import { PaginaPrincipalComponent } from './pages/pagina-principal/pagina-principal.component';
+import { ListaPacienteComponent } from './pages/lista-de-pacientes/lista-de-paciente.component';
 
 const routes: Routes = [
   {path: '', component: PaginaPrincipalComponent, children:[
-    {path: '', component: ListaDeNotasComponent},
-    {path: 'new', component: DetalheNotasComponent},
-    {path: ':id', component: DetalheNotasComponent},
-    {path: 'update/:id', component: DetalheNotasComponent}
+    {path: '', component: ListaPacienteComponent},
+    {path: ':id', component: DetalhePacienteComponent},
   ]},
 ];
 

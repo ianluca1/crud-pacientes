@@ -1,0 +1,18 @@
+<ng-template #modal_incluir_alterar_paciente class="modal fade">
+    <div class="modal-header">
+        <span>Atenção</span>
+    </div>
+        <div class="modal-body">
+            <div class="form-group">
+                    <label for="nomePaciente" class="col-form-label">Deseja realmente excluir o(a) paciente?</label>
+            </div>
+              <div class="row row-form" style="margin-top: 30px;">
+                  <div class="col">
+                      <button type="button" class="w-100 danger-btn-color btn btn-danger" (click)="deletarPaciente()"><em class="fa fa-lg fa-trash float-left pt-1"></em> Excluir </button>
+                  </div>
+                  <div class="col">
+                      <button type="button" class="w-100 btn btn-secondary" data-bs-dismiss="modal" (click)="cancel()"><em class="fa fa-lg fa-minus-circle  float-left pt-1"></em> Cancelar</button>
+                  </div>
+              </div>
+        </div>
+</ng-template>

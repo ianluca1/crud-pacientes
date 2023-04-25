@@ -1,0 +1,18 @@
+<div #container class="note-card-container">
+
+    <a [routerLink]="link" style="text-decoration: none;">
+        <div class="note-card-content">
+            <h1 class="note-card-tittle">{{ nomePaciente }}</h1>
+            <div #bodyText class="note-card-body">
+                <p>Idade: {{ idadePaciente }}</p>
+                <p>Gênero: {{ generoPaciente }}</p>
+                <div #truncator class="fade-out-truncation"></div>
+            </div>
+        </div>
+    </a>
+
+    <div class="x-button" (click)="clickBotaoDeletar()"> </div>
+    <div class="view-button" (click)="clickBotaoDetalhar()"> </div>
+    <div class="edit-button" (click)="clickBotaoAtualizar()"> </div>
+
+</div>

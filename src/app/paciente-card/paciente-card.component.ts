@@ -1,26 +1,25 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-note-card',
-  templateUrl: './note-card.component.html',
-  styleUrls: ['./note-card.component.scss']
+  selector: 'app-paciente-card',
+  templateUrl: './paciente-card.component.html',
+  styleUrls: ['./paciente-card.component.scss']
 }) 
-export class NoteCardComponent implements OnInit, AfterViewInit {
+export class PacienteCardComponent implements AfterViewInit {
 
-  @Input() title: any;
-  @Input() body: any;
+  @Input() nomePaciente: any;
+  @Input() idadePaciente: any;
+  @Input() generoPaciente: any;
   @Input() link: any;
 
-  @Output('delete') onDelete = new EventEmitter();
+  @Output('deletar') onDelete = new EventEmitter();
+  @Output('atualizar') onEdit = new EventEmitter();
+  @Output('visualizar') onView = new EventEmitter();
 
   @ViewChild('truncator') truncator!: ElementRef<HTMLElement>;
   @ViewChild('bodyText') bodyText!: ElementRef<HTMLElement>;
 
   constructor(private renderer: Renderer2) { }
-
-  ngOnInit(){
-
-  }
  
   ngAfterViewInit(){
     let style = window.getComputedStyle(this.bodyText.nativeElement, null);
@@ -35,6 +34,14 @@ export class NoteCardComponent implements OnInit, AfterViewInit {
 
   clickBotaoDeletar(){
     this.onDelete.emit();
+  }
+
+  clickBotaoDetalhar(){
+    this.onView.emit();
+  }
+
+  clickBotaoAtualizar(){
+    this.onEdit.emit();
   }
 
 }

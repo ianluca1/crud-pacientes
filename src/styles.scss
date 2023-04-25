@@ -1,3 +1,5 @@
 @import '../node_modules/bulma/css/bulma.css';
 @import './main-style.scss';
-@import './app/pages/lista-de-notas/lista-de-notas.component.scss';
+@import './app/pages/lista-de-pacientes/lista-de-paciente.component.scss';
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

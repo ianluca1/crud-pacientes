@@ -1,0 +1,26 @@
+<ng-template #modal_incluir_alterar_paciente class="modal fade">
+    <div class="modal-header">
+        <span>Cadastro de Paciente</span>
+    </div>
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+        <div class="modal-body">
+            <div class="form-group">
+                    <label for="nomePaciente" class="col-form-label">Nome</label>
+                    <input style="border-color: black;" formControlName="nomePaciente" class="form-control" id="nomePaciente">
+                    <label for="idadePaciente" class="col-form-label">Idade</label>
+                    <input style="border-color: black;" formControlName="idadePaciente" class="form-control" id="idadePaciente">
+                    <label for="generoPaciente" class="col-form-label">Gênero</label>
+                    <input style="border-color: black;" formControlName="generoPaciente" class="form-control" id="generoPaciente">
+            </div>
+              <div class="row row-form" style="margin-top: 30px;">
+                  <div class="col">
+                      <button type="button" class="w-100 success-btn-color btn btn-success" type="submit" [disabled]="formGroup.invalid"><em class="fa fa-lg fa-check float-left pt-1"></em> Cadastrar </button>
+                      <!-- <button type="button" class="w-100 success-btn-color btn btn-success" type="submit" [disabled]="formGroup.invalid"><em class="fa fa-lg fa-check float-left pt-1"></em> Alterar </button> -->
+                  </div>
+                  <div class="col">
+                      <button type="button" class="w-100 btn btn-secondary" data-bs-dismiss="modal" (click)="cancel()"><em class="fa fa-lg fa-minus-circle  float-left pt-1"></em> Cancelar</button>
+                  </div>
+              </div>
+        </div>
+    </form>
+</ng-template>
